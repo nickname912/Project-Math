@@ -1,0 +1,121 @@
+--Project Math 
+--by nickname912
+--Variable
+w,h = term.getSize()
+running = true
+version = "1.0a"
+ 
+--Functions:
+--Read/Write APIs
+local function comRead()
+        x,y = term.getCursorPos()
+   term.setCursorPos(1,y)
+   print(">")
+   term.setCursorPos(3,y)
+   command = read()
+   return command
+end
+ 
+local function printCentered(str, ypos)
+  term.setCursorPos(w/2 - #str/2, ypos)
+  term.write(str)
+end
+ 
+--String API
+function split(pString, pPattern)
+   local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
+   local fpat = "(.-)" .. pPattern
+   local last_end = 1
+   local s, e, cap = pString:find(fpat, 1)
+   while s do
+          if s ~= 1 or cap ~= "" then
+         table.insert(Table,cap)
+          end
+          last_end = e+1
+          s, e, cap = pString:find(fpat, last_end)
+   end
+   if last_end <= #pString then
+          cap = pString:sub(last_end)
+          table.insert(Table, cap)
+   end
+   return Table
+end
+ 
+--Graphical Functions:
+ 
+--Simple header
+function drawHeader()
+  printCentered("Project Math Alpha 1.0", 1)
+  printCentered(string.rep("-", w), 2)
+end
+ 
+--Calculator Main Functions:
+ 
+--Splits string, ex: 5+5 -> 5 , 5 , +
+function SplitStrings(com)
+        local splitPattern = nil
+        local mult = string.find(com,"*")
+        local div = string.find(com,"/")
+        local sub = string.find(com,"-")
+        local add = string.find(com,"+")
+       
+    if mult ~= nil then
+        splitPattern = "*"
+    elseif div ~= nil then
+        splitPattern = "/"
+    elseif sub ~= nil then
+        splitPattern = "-"
+    elseif add ~= nil then
+        splitPattern = "+"
+    end
+       
+        splitS = split(command,splitPattern)
+ 
+    math = {
+        ["num1"] = splitS[1],
+        ["num2"] = splitS[2],
+        ["sign"] = splitPattern
+    }
+   
+end
+ 
+--doing the math, ex 5+5 = 10
+function Calculation()
+        local awnser = 0
+       
+        if math["sign"] == "*" then
+        awnser = tonumber(math["num1"]) * tonumber(math["num2"])
+    elseif math["sign"] == "/" then
+        awnser = tonumber(math["num1"]) / tonumber(math["num2"])
+    elseif math["sign"] == "-" then
+        awnser = tonumber(math["num1"]) - tonumber(math["num2"])
+    elseif math["sign"] == "+" then
+        awnser = tonumber(math["num1"]) + tonumber(math["num2"])
+    end
+    return awnser
+    end
+ 
+--the shell / gui
+function Shell()
+    drawHeader()
+    print("Input your numbers or commands")
+        while running == true do
+            command = comRead()
+            if command == "exit" then
+                    return
+            else
+                SplitStrings(command)
+                awnser = Calculation()
+            print("Answer = " .. awnser)
+        end
+    end
+end
+--Runs the program
+term.clear()
+Shell()
+ 
+--Exit Screen
+term.clear()
+term.setCursorPos(1,1)
+print("Thanks for using Project Math Alpha 1.0")
+print("by nickname912")

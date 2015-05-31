@@ -139,4 +139,5 @@ Shell()
 --Exit Screen
 term.clear()
 term.setCursorPos(1,1)
-print("Thanks for using")
+print("Thanks for using Project Math Alpha 1.0")
+print("by nickname912")

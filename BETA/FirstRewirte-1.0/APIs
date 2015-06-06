@@ -1,0 +1,53 @@
+--Graphical
+
+--CommandRead
+local function comRead()
+        x,y = term.getCursorPos()
+   term.setCursorPos(1,y)
+   print(">")
+   term.setCursorPos(3,y)
+   command = read()
+   return command
+end
+ 
+--Obvious
+local function printCentered(str, ypos)
+  term.setCursorPos(w/2 - #str/2, ypos)
+  term.write(str)
+end
+
+--String
+
+--String API
+function split(pString, pPattern)
+   local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
+   local fpat = "(.-)" .. pPattern
+   local last_end = 1
+   local s, e, cap = pString:find(fpat, 1)
+   while s do
+          if s ~= 1 or cap ~= "" then
+         table.insert(Table,cap)
+          end
+          last_end = e+1
+          s, e, cap = pString:find(fpat, last_end)
+   end
+   if last_end <= #pString then
+          cap = pString:sub(last_end)
+          table.insert(Table, cap)
+   end
+   return Table
+end
+
+--Math
+
+--Factorial (not factorio)
+function factorial(n)
+num = n
+dif = 1
+val = 1
+for i=1,num do
+	val = val * dif
+	dif = dif + 1
+end
+return(val)
+end

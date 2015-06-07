@@ -1,0 +1,12 @@
+
+--ConfigTable for Dynamic Constant System
+const = {
+    [1] = {
+    	["string"] = "pi",
+    	["value"] = "3.14159265359"
+	},
+	[2] = {
+		["string"] = "c",
+	    ["value"] = "299792458" --m/s
+		}
+}

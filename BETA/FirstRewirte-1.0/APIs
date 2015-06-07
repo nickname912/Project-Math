@@ -1,3 +1,6 @@
+--Váriables
+w,h = term.getSize()
+
 --Graphical
 
 --CommandRead

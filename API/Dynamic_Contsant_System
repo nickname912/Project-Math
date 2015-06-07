@@ -1,0 +1,19 @@
+const = {
+    [1] = {
+    	["string"] = "pi",
+    	["value"] = "3.14159265359"
+	},
+	[2] = {
+		["string"] = "c",
+	    ["value"] = "299792458" --m/s
+		}
+}
+
+    while const[x] ~=nil do
+    	if math["num1"] == const[x].string then
+    		math["num1"] = const[x].value
+    	elseif math["num2"] == const[x].string then
+    		math["num2"] = const[x].value
+    	end	
+    	x = x + 1
+    end

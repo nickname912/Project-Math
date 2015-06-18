@@ -1,0 +1,52 @@
+os.loadAPI(config)
+function SplitStrings(com)
+        local splitPattern = nil
+        local mult = string.find(com,"*")
+        local div = string.find(com,"/")
+        local sub = string.find(com,"-")
+        local add = string.find(com,"+")
+        
+    if mult ~= nil then
+        splitPattern = "*"
+    elseif div ~= nil then
+        splitPattern = "/"
+    elseif sub ~= nil then
+        splitPattern = "-"
+    elseif add ~= nil then
+        splitPattern = "+"
+    end
+       
+        splitS = split(command,splitPattern)
+ 
+    math = {
+        ["num1"] = splitS[1],
+        ["num2"] = splitS[2],
+        ["sign"] = splitPattern
+    }
+   
+end
+ 
+--doing the math, ex 5+5 = 10
+const = config.const
+    --Dynamic Constant System
+   while const[x] ~=nil do
+    	if math["num1"] == const[x].string then
+    		math["num1"] = const[x].value
+    	elseif math["num2"] == const[x].string then
+    		math["num2"] = const[x].value
+    	end	
+    	x = x + 1
+  --Calculation Engine
+    local awnser = 0
+       
+    if math["sign"] == "*" then
+        awnser = tonumber(math["num1"]) * tonumber(math["num2"])
+    elseif math["sign"] == "/" then
+        awnser = tonumber(math["num1"]) / tonumber(math["num2"])
+    elseif math["sign"] == "-" then
+        awnser = tonumber(math["num1"]) - tonumber(math["num2"])
+    elseif math["sign"] == "+" then
+        awnser = tonumber(math["num1"]) + tonumber(math["num2"])
+    end
+    return awnser
+end

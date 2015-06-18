@@ -1,5 +1,5 @@
 os.loadAPI(config)
-function SplitStrings(com)
+Calculation(string)
         local splitPattern = nil
         local mult = string.find(com,"*")
         local div = string.find(com,"/")
